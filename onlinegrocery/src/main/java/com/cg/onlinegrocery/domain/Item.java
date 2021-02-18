@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -27,23 +29,23 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int itemId;
+	
+	
 	@NotBlank(message = "Item Name Required")
 	private String itemName;
-	@NotBlank(message = "Item Price Required")
+	
+	//@NotBlank(message = "Item Price Required")
 	private double itemPrice;
-	@NotBlank(message = "Item Quantity Required")
+	
+	@NotNull(message = "Item Quantity Required")
 	private int itemQuantity;
-	@Column(updatable = false)
-	private String itemIdentifier;
-
+	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "order_id",updatable = false, nullable = false)
 	@JsonIgnore
 	private Order order;
 	
-	@Column(updatable = false)
-	private String orderIdentifier;
-
+	
 	public Item() {
 		super();
 	}
@@ -83,19 +85,10 @@ public class Item {
 		this.itemQuantity = itemQuantity;
 	}
 
-	public String getOrderIdentifier() {
-		return orderIdentifier;
-	}
-
-	public void setOrderIdentifier(String orderIdentifier) {
-		this.orderIdentifier = orderIdentifier;
-	}
-
-
+	@JsonBackReference
 	public Order getOrder() {
 		return order;
 	}
-
 
 
 	public void setOrder(Order order) {

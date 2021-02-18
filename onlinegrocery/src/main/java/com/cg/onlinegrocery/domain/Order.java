@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * This Order class will store all the details of the order
@@ -20,9 +21,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "customer_orders")
 public class Order {
+	
 
 	@Id
-	@Column(name = "order_id", unique = true, updatable = false)
+	@Column(name = "order_id", unique = true, updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int orderId;
 	
@@ -37,7 +39,7 @@ public class Order {
 	
 
 	@Column(name = "ordered_items")
-	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER, mappedBy = "order")
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "order")
 	private List<Item> items = new ArrayList<>();
 
 	@Column(name = "order_date")
@@ -77,6 +79,10 @@ public class Order {
 	}
 
 	public void setAmount(Double amount) {
+//		double amt=0.0;
+//		for (Item item : items) {
+//		amt=item.getItemPrice()*item.getItemQuantity();
+//		}
 		this.amount = amount;
 	}
 
@@ -87,11 +93,11 @@ public class Order {
 	public void setOrderIdentifier(String orderIdentifier) {
 		this.orderIdentifier = orderIdentifier;
 	}
+	
+	@JsonManagedReference
 	public List<Item> getItems() {
 		return items;
 	}
-
-	
 
 	public void setItems(List<Item> items) {
 		this.items = items;
@@ -110,5 +116,11 @@ public class Order {
 		
 		this.createdAt= new Date();
 	}
+	
+//	public double getTotalCost(Item item)
+//	{
+//		return (item.getItemPrice()* item.getItemQuantity());
+//		 
+//	}
 	
 }

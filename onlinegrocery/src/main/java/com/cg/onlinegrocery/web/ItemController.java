@@ -20,41 +20,36 @@ import com.cg.onlinegrocery.service.ItemService;
 import com.cg.onlinegrocery.service.MapValidationErrorService;
 import com.cg.onlinegrocery.service.OrderService;
 
+
 @RestController
-@RequestMapping("/api/orders")
-
-public class OrderController {
-
+@RequestMapping("/api/items")
+public class ItemController {
+	
 	@Autowired
-	private OrderService orderService;
+	private ItemService itemService;
 	
 	@Autowired
 	private MapValidationErrorService mapValidationErrorService;
 
 	@PostMapping("")
-	public ResponseEntity<?> createNewOrder(@Valid @RequestBody Order order, BindingResult result)
+	public ResponseEntity<?> createNewOrder(@Valid @RequestBody Item item, BindingResult result)
 	{
 		ResponseEntity<?> errorMap = mapValidationErrorService.mapValidationError(result);
 		if (errorMap != null)
 			return errorMap;
-		Order ord= orderService.saveOrUpdate(order);
-		return new ResponseEntity<Order>(ord, HttpStatus.OK );
+		Item item1= itemService.saveOrUpdate(item);
+		return new ResponseEntity<Item>(item1, HttpStatus.OK );
 	}
 
-	@GetMapping("/{orderIdentifier}")
-	public ResponseEntity<?> getOrderById(@PathVariable String orderIdentifier){
-		Order order = orderService.findOrderByOrderIdentifier(orderIdentifier);
-		return new ResponseEntity<Order>(order, HttpStatus.OK);
-	}
 	@GetMapping("/all")
-	public Iterable<Order> getAllOrders(){
-		return orderService.getAllOrders();
+	public Iterable<Item> getAllItems(){
+		return itemService.findAll();
 	}
 	
-	@DeleteMapping("/{orderIdentifier}")
-	public ResponseEntity<?> deleteProject(@PathVariable String orderIdentifier) {
-		orderService.deleteOrderByIdentifier(orderIdentifier);
-		return new ResponseEntity<String>("Order with id : "+orderIdentifier.toUpperCase()+" deleted successfully.",HttpStatus.OK);
-	}
+//	@DeleteMapping("/{item_id}")
+//	public ResponseEntity<?> deleteProject(@PathVariable String itemId) {
+//		itemService.deleteOrderByIdentifier(itemId);
+//		return new ResponseEntity<String>("Order with id : "+orderIdentifier.toUpperCase()+" deleted successfully.",HttpStatus.OK);
+//	}
 
 }
