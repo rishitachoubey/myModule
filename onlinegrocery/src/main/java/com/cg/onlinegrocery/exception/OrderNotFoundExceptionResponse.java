@@ -9,11 +9,11 @@ public class OrderNotFoundExceptionResponse {
 			this.orderNotFound = orderNotFound;
 		}
 
-		public String getProjectNotFound() {
+		public String getOrderNotFound() {
 			return orderNotFound;
 		}
 
-		public void setProjectNotFound(String projectNotFound) {
+		public void setOrderNotFound(String projectNotFound) {
 			this.orderNotFound = projectNotFound;
 		}
 		

@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.onlinegrocery.domain.Item;
-import com.cg.onlinegrocery.domain.Order;
 import com.cg.onlinegrocery.service.ItemService;
 import com.cg.onlinegrocery.service.MapValidationErrorService;
-import com.cg.onlinegrocery.service.OrderService;
+
 
 
 @RestController
@@ -46,10 +45,11 @@ public class ItemController {
 		return itemService.findAll();
 	}
 	
-//	@DeleteMapping("/{item_id}")
-//	public ResponseEntity<?> deleteProject(@PathVariable String itemId) {
-//		itemService.deleteOrderByIdentifier(itemId);
-//		return new ResponseEntity<String>("Order with id : "+orderIdentifier.toUpperCase()+" deleted successfully.",HttpStatus.OK);
+//	@DeleteMapping("/{orderId}/{itemId}")
+//	public ResponseEntity<?> deleteItem(@PathVariable int orderId, @PathVariable int itemId) {
+//		itemService.deleteItemById(orderId, itemId);
+//		return new ResponseEntity<String>("Item with id : "+itemId+" deleted successfully.",HttpStatus.OK);
 //	}
+
 
 }

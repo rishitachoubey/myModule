@@ -49,9 +49,14 @@ public class Item {
 	public Item() {
 		super();
 	}
+	
+
+
+
 
 	// getters and setters
 	
+
 	public int getItemId() {
 		return itemId;
 	}
@@ -75,6 +80,7 @@ public class Item {
 
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice = itemPrice;
+		//this.itemPrice = itemPrice* itemQuantity;
 	}
 
 	public int getItemQuantity() {

@@ -4,9 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.onlinegrocery.domain.Item;
-import com.cg.onlinegrocery.domain.Order;
+import com.cg.onlinegrocery.exception.ItemNotFoundException;
 import com.cg.onlinegrocery.repository.ItemRepository;
-import com.cg.onlinegrocery.repository.OrderRepository;
 import com.cg.onlinegrocery.service.ItemService;
 
 @Service
@@ -25,10 +24,21 @@ public class ItemServiceImpl implements ItemService {
 		return itemRepository.save(item);
 	  
 	}
+	
+	
 	@Override
 	 public Iterable<Item> findAll() {
 	        return itemRepository.findAll();
 	    }
-	
+
+		
+//	}
+//	@Override
+//	public void deleteItemById(int orderId, int itemId) {
+//		Item item = findItemById(orderId,itemId);
+//     itemRepository.delete(item);
+//		
+//	}
+//	
 
 }

@@ -52,7 +52,7 @@ public class OrderController {
 	}
 	
 	@DeleteMapping("/{orderIdentifier}")
-	public ResponseEntity<?> deleteProject(@PathVariable String orderIdentifier) {
+	public ResponseEntity<?> deleteOrder(@PathVariable String orderIdentifier) {
 		orderService.deleteOrderByIdentifier(orderIdentifier);
 		return new ResponseEntity<String>("Order with id : "+orderIdentifier.toUpperCase()+" deleted successfully.",HttpStatus.OK);
 	}

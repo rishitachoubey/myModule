@@ -22,6 +22,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 			OrderNotFoundExceptionResponse orderNotFoundExceptionResponse =  new OrderNotFoundExceptionResponse(ex.getMessage());
 			return new ResponseEntity<Object>(orderNotFoundExceptionResponse,HttpStatus.BAD_REQUEST);
 		}
+
 		
+		@ExceptionHandler
+		public ResponseEntity<Object> handleItemNotFoundException(ItemNotFoundException ex, WebRequest request){
+			ItemNotFoundExceptionResponse itemNotFoundExceptionResponse =  new ItemNotFoundExceptionResponse(ex.getMessage());
+			return new ResponseEntity<Object>(itemNotFoundExceptionResponse,HttpStatus.BAD_REQUEST);
 	}
 
+}

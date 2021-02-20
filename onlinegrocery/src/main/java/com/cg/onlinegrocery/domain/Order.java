@@ -37,14 +37,17 @@ public class Order {
 	@Column(unique = true ,updatable = false)
 	private String orderIdentifier;
 	
-
 	@Column(name = "ordered_items")
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "order")
 	private List<Item> items = new ArrayList<>();
+	
+
 
 	@Column(name = "order_date")
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date createdAt;
+
+
 
 	// constructors
 
@@ -78,12 +81,10 @@ public class Order {
 		return amount;
 	}
 
-	public void setAmount(Double amount) {
-//		double amt=0.0;
-//		for (Item item : items) {
-//		amt=item.getItemPrice()*item.getItemQuantity();
-//		}
-		this.amount = amount;
+	public void setAmount(Item item, Double amount) {
+	
+		this.amount = getTotalCost(item);
+		
 	}
 
 	public String getOrderIdentifier() {
@@ -95,12 +96,15 @@ public class Order {
 	}
 	
 	@JsonManagedReference
-	public List<Item> getItems() {
+	public List<Item> getItems(){
 		return items;
 	}
 
 	public void setItems(List<Item> items) {
-		this.items = items;
+		
+			this.items=items;
+		
+		
 	}
 
 	public Date getCreatedAt() {
@@ -117,10 +121,10 @@ public class Order {
 		this.createdAt= new Date();
 	}
 	
-//	public double getTotalCost(Item item)
-//	{
-//		return (item.getItemPrice()* item.getItemQuantity());
-//		 
-//	}
+	public double getTotalCost(Item item)
+	{
+		return (item.getItemPrice()* item.getItemQuantity());
+		 
+	}
 	
 }

@@ -9,6 +9,7 @@ import com.cg.onlinegrocery.domain.Item;
 public interface ItemService {
 	
 	public Item saveOrUpdate(Item item);
-	 public Iterable<Item> findAll();
+	 public Iterable<Item> findAll();	
+	//public void deleteItemById(int orderId, int itemId);
 
 }
