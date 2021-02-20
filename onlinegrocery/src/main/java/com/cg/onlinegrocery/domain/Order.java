@@ -81,9 +81,9 @@ public class Order {
 		return amount;
 	}
 
-	public void setAmount(Item item, Double amount) {
+	public void setAmount(Double amount) {
 	
-		this.amount = getTotalCost(item);
+		this.amount = amount;
 		
 	}
 
@@ -121,10 +121,6 @@ public class Order {
 		this.createdAt= new Date();
 	}
 	
-	public double getTotalCost(Item item)
-	{
-		return (item.getItemPrice()* item.getItemQuantity());
-		 
-	}
+	
 	
 }

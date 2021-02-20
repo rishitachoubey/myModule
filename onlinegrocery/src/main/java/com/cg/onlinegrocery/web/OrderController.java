@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.cg.onlinegrocery.domain.Item;
 import com.cg.onlinegrocery.domain.Order;
-import com.cg.onlinegrocery.service.ItemService;
 import com.cg.onlinegrocery.service.MapValidationErrorService;
 import com.cg.onlinegrocery.service.OrderService;
 

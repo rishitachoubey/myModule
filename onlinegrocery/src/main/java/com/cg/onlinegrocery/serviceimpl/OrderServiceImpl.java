@@ -1,5 +1,4 @@
 package com.cg.onlinegrocery.serviceimpl;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,9 @@ public class OrderServiceImpl implements OrderService {
 	{
 		try {
 		order.setOrderIdentifier(order.getOrderIdentifier().toUpperCase());
-
+		// Amount calculation logic
+		double grossTotal = calculateAmountFromItems(order);
+		order.setAmount(grossTotal);
 		return orderRepository.save(order);
 		}
 		catch(Exception e)
@@ -31,6 +32,19 @@ public class OrderServiceImpl implements OrderService {
 			throw new OrderIdException("Order Id"+ order.getOrderIdentifier().toUpperCase()+" already exists");
 		}
 		
+	}
+
+	private double calculateAmountFromItems(Order order) {
+		List<Item>  items = order.getItems();
+		double grossTotal=0.0;
+		for (Item item : items) {
+			int qty = item.getItemQuantity();
+			double price = item.getItemPrice();
+			double cost = qty*price;
+			grossTotal+=cost;
+			
+		}
+		return grossTotal;
 	}
 	
 	@Override

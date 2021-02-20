@@ -1,6 +1,5 @@
 package com.cg.onlinegrocery.domain;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,38 +28,30 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int itemId;
-	
-	
+
 	@NotBlank(message = "Item Name Required")
 	private String itemName;
-	
-	//@NotBlank(message = "Item Price Required")
+
+	// @NotBlank(message = "Item Price Required")
 	private double itemPrice;
-	
+
 	@NotNull(message = "Item Quantity Required")
 	private int itemQuantity;
-	
+
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "order_id",updatable = false, nullable = false)
+	@JoinColumn(name = "order_id", updatable = false, nullable = false)
 	@JsonIgnore
 	private Order order;
-	
-	
+
 	public Item() {
 		super();
 	}
-	
-
-
-
 
 	// getters and setters
-	
 
 	public int getItemId() {
 		return itemId;
 	}
-
 
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
@@ -80,7 +71,7 @@ public class Item {
 
 	public void setItemPrice(double itemPrice) {
 		this.itemPrice = itemPrice;
-		//this.itemPrice = itemPrice* itemQuantity;
+		// this.itemPrice = itemPrice* itemQuantity;
 	}
 
 	public int getItemQuantity() {
@@ -96,13 +87,8 @@ public class Item {
 		return order;
 	}
 
-
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-
-	
-
-
 
 }
