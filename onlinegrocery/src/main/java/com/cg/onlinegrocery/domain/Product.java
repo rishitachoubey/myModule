@@ -27,8 +27,7 @@ public class Product {
 	private double productAmount;
 	@Column(name = "product_description")
 	private String productDescription;
-	@Column(name = "product_availability")
-	private String productAvailability;
+	private String availability;
 
 	
 	//Constructor
@@ -62,10 +61,10 @@ public class Product {
 	public void setProductDescription(String description) {
 		this.productDescription = description;
 	}
-	public String getProductAvailability() {
-		return productAvailability;
+	public String getAvailability() {
+		return availability;
 	}
-	public void setProductAvailability(String productAvailability) {
-		this.productAvailability = productAvailability;
+	public void setAvailability(String availability) {
+		this.availability = availability;
 	}
 }
